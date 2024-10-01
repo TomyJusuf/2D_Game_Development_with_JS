@@ -36,10 +36,16 @@ module.exports = {
       },
     ],
   },
+
   plugins: [
     new HtmlWebpackPlugin({
-      title: '2D Game JavaScript',
       template: './index.html',
+      templateContent: () => `
+      <title>2D Game Development with JS</title>
+      <body>
+         <canvas id="canvas1"></canvas>
+      </body>
+    `,
     }),
   ],
 }
