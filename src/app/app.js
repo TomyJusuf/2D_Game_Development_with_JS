@@ -1,8 +1,16 @@
 import '../css/style.css'
-import './Canva'
-// Just delete this line and write your code here
-//
-//
-import Welcome from './Welcome'
+import Canva from './Components/Canva'
 
-Welcome()
+window.addEventListener('load', () => {
+  const canvas = new Canva(1500, 500, 'white')
+  canvas.log()
+  class InputHandler {}
+  class Projectile {}
+  class Particle {}
+  class Player {}
+  class Enemy {}
+  class Layer {}
+  class Background {}
+  class UI {}
+  class Game {}
+})
