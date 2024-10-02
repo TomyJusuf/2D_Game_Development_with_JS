@@ -3,6 +3,6 @@ import './Canva'
 // Just delete this line and write your code here
 //
 //
-import sayHello from './SayHello'
+import Welcome from './Welcome'
 
-console.log(sayHello('TomyJusuf'))
+Welcome()

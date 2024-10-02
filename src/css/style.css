@@ -2,13 +2,40 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: sans-serif;
 }
 
 #canvas1 {
   border: solid 5px black;
-  position: absolute;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #a03ac5;
+  background: #e6eaeb;
+}
+
+.welcome {
+  background: rgb(171, 170, 170);
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+  margin: 150px auto;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+
+  color: rgb(36, 35, 35);
+  flex-wrap: wrap;
+  height: auto;
+}
+h1 {
+  text-align: center;
+  width: 100%;
+  display: block;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  font-weight: bold;
 }
