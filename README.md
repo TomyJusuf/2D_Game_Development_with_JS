@@ -20,7 +20,23 @@ This project helps developers learn how to:
 - Use **Canvas** to create simple 2D games in JavaScript.
 - Apply concepts like game loops, animations, and event handling.
 
-Feel free to dive in and explore how the game works while learning Webpack's role in managing project assets!
+<details>
+  <summary><strong>Branches</strong></summary>
+  
+  There are 3 main branches:
+
+- **defaultInfo**  
+  This branch contains the basic project information, configuration, and introduction files.
+
+- **defaultSetting**  
+  This branch includes the initial Webpack settings and configurations needed to bundle the assets.
+
+- **defaultSettingCss**  
+  This branch focuses on the setup for handling CSS in the Webpack configuration, with optimizations for styling.
+
+Feel free to explore each branch to see how the game works while learning Webpack's role in managing project assets!
+
+</details>
 
 ## Getting Started
 
