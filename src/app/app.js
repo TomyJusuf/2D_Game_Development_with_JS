@@ -1,9 +1,8 @@
 import '../css/style.css'
-import Canva from './Components/Canva'
+
+import './Components/Game'
 
 window.addEventListener('load', () => {
-  const canvas = new Canva(1500, 500, 'white')
-  canvas.log()
   class InputHandler {}
   class Projectile {}
   class Particle {}

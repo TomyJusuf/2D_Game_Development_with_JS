@@ -1,6 +1,7 @@
 const canvas = document.getElementById('canvas1')
 const ctx = canvas.getContext('2d')
-export default class Canva {
+
+class Canva {
   constructor(width, height, background) {
     this.width = width
     this.height = height
@@ -10,7 +11,7 @@ export default class Canva {
     this.canvas.width = this.width
     this.canvas.height = this.height
   }
-  log() {
-    console.log(this.width, this.height, this.background)
-  }
 }
+const canva = new Canva(1500, 500, 'white')
+
+export default canva
