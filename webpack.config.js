@@ -1,9 +1,11 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const devMode = process.env.NODE_ENV !== 'production'
 const path = require('path')
 
 module.exports = {
   mode: 'development',
-  entry: './src/app.js',
+  entry: './src/app/app.js',
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
@@ -22,7 +24,10 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i, // For CSS, if needed
-        use: ['style-loader', 'css-loader'],
+        use: [
+          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader',
+        ],
       },
       {
         test: /\.js$/, // For JavaScript files
@@ -41,11 +46,14 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './index.html',
       templateContent: () => `
+
       <title>2D Game Development with JS</title>
       <body>
          <canvas id="canvas1"></canvas>
       </body>
     `,
     }),
-  ],
+  ].concat(
+    devMode ? [] : [new MiniCssExtractPlugin({ filename: 'style.css' })]
+  ),
 }
