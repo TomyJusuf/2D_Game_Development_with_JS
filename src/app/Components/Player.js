@@ -8,12 +8,13 @@ export default class Player {
     this.x = 20
     this.y = 100
     this.speedY = 0
-    this.maxSpeed = 3
+    this.maxSpeed = 2
     this.projectile = []
   }
 
-  update(keysPressed) {
-    this.#keyMovement(keysPressed)
+  update(input) {
+    this.#keyMovement(input)
+    this.y += this.speedY
     this.projectile.forEach((projectile) => {
       projectile.update()
     })
@@ -24,7 +25,9 @@ export default class Player {
 
   shootTop() {
     if (this.game.ammo > 0) {
-      this.projectile.push(new Projectile(this.game, this.x + 80, this.y + 30))
+      const shoot = new Projectile(this.game, this.x + 80, this.y + 30)
+      this.projectile.push(shoot)
+      //Limit ammo ↓
       this.game.ammo--
     }
   }
@@ -51,6 +54,5 @@ export default class Player {
     if (keyPressed.key.includes(' ')) {
       this.shootTop()
     }
-    this.y += this.speedY
   }
 }
