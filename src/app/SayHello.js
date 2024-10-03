@@ -1,7 +1,7 @@
 const message = `
  <h1>Welcome to My Webpack Project!</h1>
  <br>
-  <p>Hi, I'm Tomas Matusek, also known as TomyJusuf. This project is designed to help developers, like yourself, learn how to use Webpack as a bundler. It's inspired by the <strong>Learn 2D Game Development with JavaScript</strong> tutorial by Frank's Laboratory.</p>
+  <p>Hi, I'm Tomas Matusek, also known as TomyJusuf. This project is designed to help developers, like You to learn how to use Webpack as a bundler. It's inspired by the <strong>Learn 2D Game Development with JavaScript</strong> tutorial by Frank's Laboratory.</p>
   <br>
   <p>Take a moment to explore the code, and see how everything works together—from setting up Webpack to creating a <strong>Canvas-based 2D game</strong>.</p>
   <br>
