@@ -12,4 +12,16 @@ export default class UI {
       context.fillRect(20 + 5 * i, 50, 3, 20)
     }
   }
+
+  drawScore(context) {
+    context.fillStyle = this.color
+    context.font = `${this.fontSite}px ${this.fontFamily}`
+    context.fillText(`Score: ${this.game.score}`, 20, 20)
+  }
+
+  drawGameOver(context) {
+    context.fillStyle = this.color
+    context.font = `${this.fontSite * 2}px ${this.fontFamily}`
+    context.fillText(`Game Over`, 300, 300)
+  }
 }
