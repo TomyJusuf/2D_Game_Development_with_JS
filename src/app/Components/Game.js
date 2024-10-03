@@ -11,6 +11,7 @@ class Game {
     this.ui = new UI(this)
     this.enemies = []
     this.score = 0
+    this.winningScore = 10
     this.enemyTimer = 0
     this.enemyInterval = 1000
     this.ammo = 20 //Limit shooting
@@ -28,7 +29,6 @@ class Game {
   draw(context) {
     this.player.draw(context) // context == canva.ctx
     this.ui.draw(context)
-    this.ui.drawScore(context)
     this.enemies.forEach((enemy) => {
       enemy.draw(context)
     })
@@ -74,7 +74,9 @@ class Game {
           if (enemy.lives === 0) {
             enemy.markedForDeletion = true
             this.score += enemy.score
-            console.log(this.score)
+            if (this.score > this.winningScore) {
+              this.gameOver = true
+            }
           }
         }
       })
