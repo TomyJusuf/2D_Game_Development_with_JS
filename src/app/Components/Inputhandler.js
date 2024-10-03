@@ -4,21 +4,19 @@ class InputHandler {
     this.key = []
     window.addEventListener('keydown', (e) => {
       if (
-        (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === ' ') &&
-        !this.key.includes(e.key)
+        (e.key === 'ArrowDown' || e.key === 'ArrowUp') &&
+        this.key.indexOf(e.key) === -1
       ) {
         this.key.push(e.key)
+      } else if (e.key === ' ') {
+        this.game.player.shootTop()
       }
     })
     window.addEventListener('keyup', (e) => {
-      if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === ' ') {
-        const index = this.key.indexOf(e.key)
-        if (index > -1) {
-          this.key.splice(index, 1)
-        }
+      if (this.key.indexOf(e.key) > -1) {
+        this.key.splice(this.key.indexOf(e.key), 1)
       }
     })
   }
 }
-
 export default InputHandler
