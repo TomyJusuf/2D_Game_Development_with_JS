@@ -1,8 +1,7 @@
 import '../css/style.css'
-import './Canva'
-// Just delete this line and write your code here
-//
-//
-import Welcome from './Welcome'
+import './Components/Game'
+import { animate } from './Components/Animation'
 
-Welcome()
+window.addEventListener('load', () => {
+  animate(0)
+})
