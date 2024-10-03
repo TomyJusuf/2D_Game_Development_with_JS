@@ -1,15 +1,7 @@
 import '../css/style.css'
-
 import './Components/Game'
+import { animate } from './Components/Animation'
 
 window.addEventListener('load', () => {
-  class InputHandler {}
-  class Projectile {}
-  class Particle {}
-  class Player {}
-  class Enemy {}
-  class Layer {}
-  class Background {}
-  class UI {}
-  class Game {}
+  animate(0)
 })
