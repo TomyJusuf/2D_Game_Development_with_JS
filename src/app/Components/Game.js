@@ -11,7 +11,6 @@ class Game {
     this.ui = new UI(this)
     this.enemies = []
     this.score = 0
-    this.winningScore = 10
     this.enemyTimer = 0
     this.enemyInterval = 1000
     this.ammo = 20 //Limit shooting
@@ -19,6 +18,9 @@ class Game {
     this.ammoTimer = 0
     this.ammoInterval = 500
     this.gameOver = false
+    this.winningScore = 10
+    this.gameTime = 0
+    this.timeLimit = 5000
   }
   update(deleteTime) {
     this.player.update(this.input)
