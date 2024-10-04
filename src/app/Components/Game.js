@@ -20,9 +20,11 @@ class Game {
     this.gameOver = false
     this.winningScore = 10
     this.gameTime = 0
-    this.timeLimit = 5000
+    this.timeLimit = 50000
   }
   update(deleteTime) {
+    if (!this.gameOver) this.gameTime += deleteTime
+    if (this.gameTime > this.timeLimit) this.gameOver = true
     this.player.update(this.input)
     this.#ammo_timer(deleteTime)
     this.#enemyUpdate(deleteTime)
@@ -68,14 +70,17 @@ class Game {
         this.gameOver = true
         enemy.markedForDeletion = true
       }
+      //score points
       //check if projectiles hit enemy
       this.player.projectile.forEach((projectile) => {
         if (this.checkCollision(projectile, enemy)) {
           enemy.lives -= 1
           projectile.markForDeletion = true
-          if (enemy.lives === 0) {
+          if (enemy.lives <= 0) {
             enemy.markedForDeletion = true
-            this.score += enemy.score
+            if (!this.gameOver) {
+              this.score += enemy.score
+            }
             if (this.score > this.winningScore) {
               this.gameOver = true
             }
