@@ -15,6 +15,9 @@ export default class UI {
       context.fillRect(20 + 5 * i, 50, 3, 20)
     }
 
+    //timer
+    const formattedTime = (this.game.gameTime * 0.001).toFixed(1)
+    context.fillText('Timer: ' + formattedTime, 20, 100)
     //game over messages
     this.#gameOver(context)
     context.restore()
