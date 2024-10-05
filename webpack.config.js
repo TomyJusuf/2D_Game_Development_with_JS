@@ -65,8 +65,7 @@ module.exports = {
       <canvas id="canvas1"></canvas>
         <!-- characters -->
         <!-- props -->
-        <!-- environment -->
-    
+        <!-- environment -->    
       </body>
     `,
     }),
