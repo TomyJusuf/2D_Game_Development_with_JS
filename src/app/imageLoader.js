@@ -6,6 +6,7 @@ import player from '../assets/player.png'
 import angler1 from '../assets/angler1.png'
 import angler2 from '../assets/angler2.png'
 import lucky from '../assets/lucky.png'
+import projectile from '../assets/projectile.png'
 
 const imagesObj = {
   angler1,
@@ -16,6 +17,7 @@ const imagesObj = {
   layer2,
   layer3,
   layer4,
+  projectile,
 }
 
 export function appendImages(newObj) {
