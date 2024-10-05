@@ -6,7 +6,7 @@
 }
 
 #canvas1 {
-  border: solid 5px black;
+  border: solid 5px rgb(23, 22, 22);
   position: relative;
   top: 50%;
   left: 50%;
