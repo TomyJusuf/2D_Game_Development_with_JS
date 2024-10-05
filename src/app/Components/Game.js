@@ -1,7 +1,7 @@
 import Player from './Player'
 import InputHandler from './Inputhandler'
 import UI from './UI'
-import Angler from './Enemy'
+import { Angler, Angler2 } from './Enemy'
 import background from './Background'
 class Game {
   constructor(width, height) {
@@ -48,7 +48,9 @@ class Game {
     this.background.layer4.draw(context)
   }
   addEnemy() {
-    this.enemies.push(new Angler(this))
+    const randomize = Math.random()
+    if (randomize < 0.5) this.enemies.push(new Angler(this))
+    else this.enemies.push(new Angler2(this))
   }
 
   checkCollision(rec1, res2) {
