@@ -11,9 +11,14 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   devServer: {
-    static: {
-      directory: path.join(__dirname, 'public'),
-    },
+    static: [
+      {
+        directory: path.join(__dirname, 'public'),
+      },
+      {
+        directory: path.join(__dirname, './src/assets'),
+      },
+    ],
     compress: true,
     port: 3000,
     hot: true,
@@ -28,6 +33,13 @@ module.exports = {
           devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
         ],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/[hash][ext][query]',
+        },
       },
       {
         test: /\.js$/, // For JavaScript files
@@ -49,7 +61,12 @@ module.exports = {
 
       <title>2D Game Development with JS</title>
       <body>
-         <canvas id="canvas1"></canvas>
+      
+      <canvas id="canvas1"></canvas>
+        <!-- characters -->
+        <!-- props -->
+        <!-- environment -->
+    
       </body>
     `,
     }),
