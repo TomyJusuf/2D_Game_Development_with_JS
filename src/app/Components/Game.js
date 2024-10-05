@@ -24,6 +24,7 @@ class Game {
     this.gameTime = 0
     this.timeLimit = 50000
     this.speed = 1
+    this.debug = true
   }
   update(deleteTime) {
     if (!this.gameOver) this.gameTime += deleteTime
