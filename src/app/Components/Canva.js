@@ -12,6 +12,6 @@ class Canva {
     this.canvas.height = this.height
   }
 }
-const canva = new Canva(1500, 500, 'yellow')
+const canva = new Canva(1700, 500, 'yellow')
 
 export default canva
