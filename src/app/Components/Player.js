@@ -1,5 +1,5 @@
 import Projectile from './Projectile'
-
+import player from '../../assets/player.png'
 export default class Player {
   constructor(game) {
     this.game = game
@@ -7,9 +7,15 @@ export default class Player {
     this.height = 190
     this.x = 20
     this.y = 100
+    this.frameX = 0
+    this.frameY = 0
+    this.maxFrame = 37
     this.speedY = 0
     this.maxSpeed = 2
     this.projectile = []
+    this.image = new Image()
+    this.image.id = 'player'
+    this.image.src = player
   }
 
   update(input) {
@@ -21,6 +27,8 @@ export default class Player {
     this.projectile = this.projectile.filter(
       (projectile) => !projectile.markForDeletion
     )
+    if (this.frameX < this.maxFrame) this.frameX++
+    else this.frameX = 0
   }
 
   shootTop() {
@@ -33,9 +41,25 @@ export default class Player {
   }
 
   draw(context) {
-    //set color of player
-    context.fillStyle = 'green'
-    context.fillRect(this.x, this.y, this.width, this.height)
+    if (this.game.debug) {
+      context.strokeRect(this.x, this.y, this.width, this.height)
+    }
+    if (this.image.complete && this.image.naturalWidth > 0) {
+      context.drawImage(
+        this.image,
+        this.frameX * this.width,
+        this.frameY * this.height,
+        this.width,
+        this.height,
+        this.x,
+        this.y,
+        this.width,
+        this.height
+      )
+    } else {
+      console.log('Image is not loaded yet or is broken')
+    }
+
     this.projectile.forEach((projectile) => {
       projectile.draw(context)
     })
