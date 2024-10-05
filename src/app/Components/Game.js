@@ -2,10 +2,12 @@ import Player from './Player'
 import InputHandler from './Inputhandler'
 import UI from './UI'
 import Angler from './Enemy'
+import background from './Background'
 class Game {
   constructor(width, height) {
     this.width = width
     this.height = height
+    this.background = new background(this)
     this.player = new Player(this)
     this.input = new InputHandler(this)
     this.ui = new UI(this)
@@ -21,25 +23,31 @@ class Game {
     this.winningScore = 10
     this.gameTime = 0
     this.timeLimit = 50000
+    this.speed = 1
   }
   update(deleteTime) {
     if (!this.gameOver) this.gameTime += deleteTime
     if (this.gameTime > this.timeLimit) this.gameOver = true
+
+    this.background.update()
+    this.background.layer4.update()
+
     this.player.update(this.input)
     this.#ammo_timer(deleteTime)
     this.#enemyUpdate(deleteTime)
   }
 
   draw(context) {
-    this.player.draw(context) // context == canva.ctx
+    this.background.draw(context)
+    this.player.draw(context)
     this.ui.draw(context)
     this.enemies.forEach((enemy) => {
       enemy.draw(context)
     })
+    this.background.layer4.draw(context)
   }
   addEnemy() {
     this.enemies.push(new Angler(this))
-    // console.log(this.enemies)
   }
 
   checkCollision(rec1, res2) {
