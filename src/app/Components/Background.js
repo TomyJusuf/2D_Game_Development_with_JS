@@ -1,8 +1,8 @@
 import Layer from '../Components/Layer'
-import layer1 from '../../assets/layer1.png'
-import layer2 from '../../assets/layer2.png'
-import layer3 from '../../assets/layer3.png'
-import layer4 from '../../assets/layer4.png'
+import layer1 from '../../assets/images/layer1.png'
+import layer2 from '../../assets/images/layer2.png'
+import layer3 from '../../assets/images/layer3.png'
+import layer4 from '../../assets/images/layer4.png'
 export default class Background {
   constructor(game) {
     this.game = game

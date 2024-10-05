@@ -1,4 +1,4 @@
-import projectile from '../../assets/projectile.png'
+import projectile from '../../assets/images/projectile.png'
 
 export default class Projectile {
   constructor(game, x, y) {

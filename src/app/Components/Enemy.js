@@ -1,6 +1,6 @@
-import angler from '../../assets/angler1.png'
-import angler2 from '../../assets/angler2.png'
-import lucky from '../../assets/lucky.png'
+import angler from '../../assets/images/angler1.png'
+import angler2 from '../../assets/images/angler2.png'
+import lucky from '../../assets/images/lucky.png'
 
 class Enemy {
   constructor(game) {

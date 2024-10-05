@@ -1,5 +1,5 @@
 import Projectile from './Projectile'
-import player from '../../assets/player.png'
+import player from '../../assets/images/player.png'
 export default class Player {
   constructor(game) {
     this.game = game
