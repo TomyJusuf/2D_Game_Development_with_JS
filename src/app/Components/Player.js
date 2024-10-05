@@ -16,19 +16,37 @@ export default class Player {
     this.image = new Image()
     this.image.id = 'player'
     this.image.src = player
+    this.powerUp = false
+    this.powerUpTimer = 0
+    this.powerUpTimerLimit = 10000
   }
 
-  update(input) {
+  update(input, deltaTime) {
     this.#keyMovement(input)
     this.y += this.speedY
     this.projectile.forEach((projectile) => {
       projectile.update()
     })
+    //handle projectile
     this.projectile = this.projectile.filter(
       (projectile) => !projectile.markForDeletion
     )
+    //sprite animation
     if (this.frameX < this.maxFrame) this.frameX++
     else this.frameX = 0
+
+    //power up
+    if (this.powerUp) {
+      if (this.powerUpTimer > this.powerUpTimerLimit) {
+        this.powerUpTimer = 0
+        this.powerUp = false
+        this.frameY = 0
+      } else {
+        this.powerUpTimer += deltaTime
+        this.frameY = 1
+        this.game.ammo += 0.1
+      }
+    }
   }
 
   shootTop() {
@@ -38,12 +56,32 @@ export default class Player {
       //Limit ammo ↓
       this.game.ammo--
     }
+    if (this.powerUp) this.shootBottom()
+  }
+
+  shootBottom() {
+    if (this.game.ammo > 0) {
+      const shoot = new Projectile(this.game, this.x + 80, this.y + 175)
+      this.projectile.push(shoot)
+      //Limit ammo ↓
+      this.game.ammo--
+    }
+  }
+  enterPowerUp() {
+    this.powerUp = true
+    this.powerUpTimer = 0
+    this.game.ammo = this.game.maxAmmo
   }
 
   draw(context) {
     if (this.game.debug) {
       context.strokeRect(this.x, this.y, this.width, this.height)
     }
+
+    this.projectile.forEach((projectile) => {
+      projectile.draw(context)
+    })
+
     if (this.image.complete && this.image.naturalWidth > 0) {
       context.drawImage(
         this.image,
@@ -59,10 +97,6 @@ export default class Player {
     } else {
       console.log('Image is not loaded yet or is broken')
     }
-
-    this.projectile.forEach((projectile) => {
-      projectile.draw(context)
-    })
   }
 
   // private methods

@@ -11,15 +11,18 @@ export default class UI {
 
     //ammo
     context.fillStyle = this.color
-    for (let i = 0; i < this.game.ammo; i++) {
-      context.fillRect(20 + 5 * i, 50, 3, 20)
-    }
 
     //timer
     const formattedTime = (this.game.gameTime * 0.001).toFixed(1)
     context.fillText('Timer: ' + formattedTime, 20, 100)
+
     //game over messages
     this.#gameOver(context)
+
+    if (this.game.player.powerUp) context.fillStyle = '#f43378'
+    for (let i = 0; i < this.game.ammo; i++) {
+      context.fillRect(20 + 5 * i, 50, 3, 20)
+    }
     context.restore()
   }
 

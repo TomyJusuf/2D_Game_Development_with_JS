@@ -1,5 +1,6 @@
 import angler from '../../assets/angler1.png'
 import angler2 from '../../assets/angler2.png'
+import lucky from '../../assets/lucky.png'
 
 class Enemy {
   constructor(game) {
@@ -75,4 +76,20 @@ class Angler2 extends Enemy {
     this.frameY = Math.floor(Math.random() * 2)
   }
 }
-export { Angler, Angler2 }
+
+class Lucky extends Enemy {
+  constructor(game) {
+    super(game)
+    this.width = 99
+    this.height = 95
+    this.image = new Image()
+    this.image.id = 'lucky'
+    this.image.src = lucky
+    this.lives = 3
+    this.score = 15
+    this.type = 'lucky'
+    this.y = Math.random() * (this.game.height * 0.9 - this.height)
+    this.frameY = Math.floor(Math.random() * 2)
+  }
+}
+export { Angler, Angler2, Lucky }

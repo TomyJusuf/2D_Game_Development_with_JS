@@ -1,7 +1,7 @@
 import Player from './Player'
 import InputHandler from './Inputhandler'
 import UI from './UI'
-import { Angler, Angler2 } from './Enemy'
+import { Angler, Angler2, Lucky } from './Enemy'
 import background from './Background'
 class Game {
   constructor(width, height) {
@@ -16,14 +16,14 @@ class Game {
     this.enemyTimer = 0
     this.enemyInterval = 1000
     this.ammo = 20 //Limit shooting
-    this.maxAmmo = 50
+    this.maxAmmo = 30
     this.ammoTimer = 0
     this.ammoInterval = 500
     this.gameOver = false
     this.winningScore = 10
     this.gameTime = 0
     this.timeLimit = 50000
-    this.speed = 1
+    this.speed = 0.8
     this.debug = true
   }
   update(deleteTime) {
@@ -33,7 +33,7 @@ class Game {
     this.background.update()
     this.background.layer4.update()
 
-    this.player.update(this.input)
+    this.player.update(this.input, deleteTime)
     this.#ammo_timer(deleteTime)
     this.#enemyUpdate(deleteTime)
   }
@@ -49,8 +49,9 @@ class Game {
   }
   addEnemy() {
     const randomize = Math.random()
-    if (randomize < 0.5) this.enemies.push(new Angler(this))
-    else this.enemies.push(new Angler2(this))
+    if (randomize < 0.3) this.enemies.push(new Angler(this))
+    else if (randomize < 0.6) this.enemies.push(new Angler2(this))
+    else this.enemies.push(new Lucky(this))
   }
 
   checkCollision(rec1, res2) {
@@ -78,8 +79,10 @@ class Game {
 
       //check collision
       if (this.checkCollision(this.player, enemy)) {
-        this.gameOver = true
+        // this.gameOver = true
         enemy.markedForDeletion = true
+        if (enemy.type === 'lucky') this.player.enterPowerUp()
+        else this.score--
       }
       //score points
       //check if projectiles hit enemy
