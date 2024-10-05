@@ -24,6 +24,7 @@ module.exports = {
     hot: true,
     compress: true,
     historyApiFallback: true,
+    open: true,
   },
   module: {
     rules: [
