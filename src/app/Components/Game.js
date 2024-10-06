@@ -3,6 +3,7 @@ import InputHandler from './Inputhandler'
 import UI from './UI'
 import { Angler, Angler2, Lucky } from './Enemy'
 import background from './Background'
+import Particle from './Particle'
 class Game {
   constructor(width, height) {
     this.width = width
@@ -12,6 +13,7 @@ class Game {
     this.input = new InputHandler(this)
     this.ui = new UI(this)
     this.enemies = []
+    this.particles = []
     this.score = 0
     this.enemyTimer = 0
     this.enemyInterval = 1000
@@ -35,6 +37,7 @@ class Game {
 
     this.player.update(this.input, deleteTime)
     this.#ammo_timer(deleteTime)
+    this.#particle()
     this.#enemyUpdate(deleteTime)
   }
 
@@ -45,6 +48,8 @@ class Game {
     this.enemies.forEach((enemy) => {
       enemy.draw(context)
     })
+    this.particles.forEach((particle) => particle.draw(context))
+
     this.background.layer4.draw(context)
   }
   addEnemy() {
@@ -72,6 +77,12 @@ class Game {
       }
     }
   }
+  #particle() {
+    this.particles.forEach((particle) => particle.update())
+    this.particles = this.particles.filter(
+      (particle) => !particle.markedForDeletion
+    )
+  }
 
   #enemyUpdate(deleteTime) {
     this.enemies.forEach((enemy) => {
@@ -81,23 +92,45 @@ class Game {
       if (this.checkCollision(this.player, enemy)) {
         // this.gameOver = true
         enemy.markedForDeletion = true
+        for (let i = 0; i < 10; i++) {
+          this.particles.push(
+            new Particle(
+              this,
+              enemy.x + enemy.width * 0.5,
+              enemy.y + enemy.height * 0.5
+            )
+          )
+        }
         if (enemy.type === 'lucky') this.player.enterPowerUp()
         else this.score--
       }
-      //score points
-      //check if projectiles hit enemy
+
+      //score points & check if projectiles hit enemy
       this.player.projectile.forEach((projectile) => {
         if (this.checkCollision(projectile, enemy)) {
           enemy.lives -= 1
           projectile.markForDeletion = true
+          this.particles.push(
+            new Particle(
+              this,
+              enemy.x + enemy.width * 0.5,
+              enemy.y + enemy.height * 0.5
+            )
+          )
+
           if (enemy.lives <= 0) {
+            for (let i = 0; i < 10; i++) {
+              this.particles.push(
+                new Particle(
+                  this,
+                  enemy.x + enemy.width * 0.5,
+                  enemy.y + enemy.height * 0.5
+                )
+              )
+            }
             enemy.markedForDeletion = true
-            if (!this.gameOver) {
-              this.score += enemy.score
-            }
-            if (this.score > this.winningScore) {
-              this.gameOver = true
-            }
+            if (!this.gameOver) this.score += enemy.score
+            if (this.score > this.winningScore) this.gameOver = true
           }
         }
       })
