@@ -27,6 +27,12 @@ export default class Player {
     this.projectile.forEach((projectile) => {
       projectile.update()
     })
+    //vertical bounds
+    if (this.y > this.game.height - this.height * 0.5) {
+      this.y = this.game.height - this.height * 0.5
+    } else if (this.y < -this.height * 0.5) {
+      this.y = -this.height * 0.5
+    }
     //handle projectile
     this.projectile = this.projectile.filter(
       (projectile) => !projectile.markForDeletion

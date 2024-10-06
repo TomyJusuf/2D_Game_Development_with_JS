@@ -48,11 +48,11 @@ export default class UI {
       let message1
       let message2
       if (this.game.score >= this.game.winningScore) {
-        message1 = 'You Win!'
-        message2 = 'Well Done!'
+        message1 = 'Most Wondrous!'
+        message2 = 'Well done explorer!'
       } else {
         message1 = 'Game Over'
-        message2 = 'Try Again!'
+        message2 = 'Get my repair kit and try again!'
       }
       context.font = `100px ${this.fontFamily}`
       context.fillText(
@@ -64,7 +64,7 @@ export default class UI {
       context.fillText(
         message2,
         this.game.width * 0.5,
-        this.game.height * 0.5 + 40
+        this.game.height * 0.5 + 20
       )
     }
   }

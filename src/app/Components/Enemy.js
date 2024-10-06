@@ -39,8 +39,10 @@ class Enemy {
     } else {
       console.log('Image is not loaded yet or is broken')
     }
-    context.fillText(this.lives, this.x, this.y)
-    context.font = '20px Helvetica'
+    if (this.game.debug) {
+      context.font = '20px Helvetica'
+      context.fillText(this.lives, this.x, this.y)
+    }
   }
 }
 
