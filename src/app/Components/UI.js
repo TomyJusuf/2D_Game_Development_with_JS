@@ -2,7 +2,7 @@ export default class UI {
   constructor(game) {
     this.game = game
     this.fontSite = 20
-    this.fontFamily = 'Helvetica'
+    this.fontFamily = 'Bangers'
     this.color = 'yellow'
   }
   draw(context) {
