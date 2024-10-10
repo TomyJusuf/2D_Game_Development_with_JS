@@ -1,6 +1,6 @@
 # Webpack 2D Game Project OOP
 
-Welcome to my Webpack project! This repository demonstrates how to use **Webpack** for bundling a **Canvas-based 2D game**, inspired by the **"Learn 2D Game Development with JavaScript"** tutorial from Frank's Laboratory.
+Welcome to my Webpack project with OOP! This repository demonstrates how to use **Webpack** for bundling , including OOP programing for **Canvas-based 2D game** inside my folders .
 
 ## Table of Contents
 
